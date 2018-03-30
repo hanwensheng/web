@@ -1,0 +1,51 @@
+*{margin:0;padding:0;list-style-type:none;}
+html,body,div,span,a,p,img,dl,dt,dd,ol,ul,li{border:0;margin:0;padding:0;font-size:100%;text-decoration:none}
+img{color:transparent;font-size:0;vertical-align:middle;-ms-interpolation-mode:bicubic;max-width:100%}
+ol,ul{list-style:none}
+li{display:list-item}
+:focus,.focus{outline:none}
+body{max-width:640px;margin:0 auto;font-family:"microsoft yahei";font-size:13px;line-height:1.5;background:#fe620d;}
+h3,.h3{font-size:16px;}
+a:link,a:visited,a:hover,a:active{text-decoration:none}
+/* 广告 */
+.banner{width:100%;margin:0 auto;}
+.main{ background:url(../images/hdrk-bg1.png) no-repeat; width:100%; height:227px; background-size:100% 100%;-webkit-background-size:100% 100%;}
+.main-but{ width:494px; margin:0px auto; padding-top:20px;}
+.but1,.but2,.but3,.but4{ display:block; background:url(../images/hdrk-but1.png) no-repeat; width:237px; height:63px; float:left; background-size:100% 100%;-webkit-background-size:100% 100%;}
+.but2{background:url(../images/hdrk-but2.png) no-repeat; margin-left:20px;  background-size:100% 100%;-webkit-background-size:100% 100%;}
+.but3{background:url(../images/hdrk-but3.png) no-repeat; background-size:100% 100%;-webkit-background-size:100% 100%;}
+.but4{background:url(../images/hdrk-but4.png) no-repeat; margin-left:20px;  background-size:100% 100%;-webkit-background-size:100% 100%;}
+.footer{ width:80%; margin:60px auto; background-color:#d23c07; padding:20px 0px; border-radius:6px;-webkit-border-radius:6px;}
+.footer p{ width:90%;margin:0px auto; font-size:21px; color:#ffffff}
+
+@media screen and (max-width:599px){
+.main{ height:200px;}
+.main-but{ width:340px; margin:0px auto; padding-top:20px;}
+.but1,.but2,.but3,.but4{ width:160px; height:43px; float:left}
+.footer{ width:86%; margin:40px auto;  padding:20px 0px;}
+.footer p{ width:90%;font-size:16px; }
+}
+@media screen and (max-width:384px){
+
+}
+@media screen and (max-width:360px){
+.main{ height:160px;}
+.main-but{ width:300px; margin:0px auto; padding-top:15px;}
+.but1,.but2,.but3,.but4{ width:140px; height:37px; float:left}
+.footer{ width:86%; margin:30px auto;  padding:20px 0px;}
+.footer p{ width:90%;font-size:14px; }
+
+
+}
+
+@media screen and (max-width:320px){
+.main{ height:180px;}
+.main-but{ width:290px; margin:0px auto; padding-top:15px;}
+.but1,.but2,.but3,.but4{ width:140px; height:37px; float:left}
+.but2{ margin-left:10px; }
+.but4{ margin-left:10px; }
+.footer{ width:86%; margin:20px auto;  padding:20px 0px;}
+}
+
+
+
