@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/new_file.css" />
+	</head>
+	<body>
+		<ol class="git_order">
+			<li>初始化一个Git仓库，使用<span class="git_color">git init</span>命令。</li>
+			<li>添加文件到Git仓库，分两步：<br />第一步，使用命令<span class="git_color">git add file</span>，注意，可反复多次使用，添加多个文件；<br />第二步，使用命令<span class="git_color">git commit</span>，完成。</li>
+			<li>要随时掌握工作区的状态，使用<span class="git_color">git status</span>命令。</li>
+			<li>如果<span class="git_color">git status</span>告诉你有文件被修改过，用<span class="git_color">git diff</span>可以查看修改内容。</li>
+			<li>HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令<span class="git_color">git reset --hard commit_id。</span></li>
+			<li>穿梭前，用<span class="git_color">git log</span>可以查看提交历史，以便确定要回退到哪个版本。</li>
+			<li>要重返未来，用<span class="git_color">git reflog</span>查看命令历史，以便确定要回到未来的哪个版本。</li>
+			<li>场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令<span class="git_color">git checkout -- file</span>。<br />场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令<span class="git_color">git reset HEAD file</span>，就回到了场景1，第二步按场景1操作。<br />场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。</li>
+			<li>命令<span class="git_color">git rm</span>用于删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。</li>
+			<li>要关联一个远程库，使用命令<span class="git_color">git remote add origin git@server-name:path/repo-name.git</span>；关联后，使用命令<span class="git_color">git push -u origin master</span>第一次推送master分支的所有内容；此后，每次本地提交后，只要有必要，就可以使用命令<span class="git_color">git push origin master</span>推送最新修改；</li>
+			<li>要克隆一个仓库，首先必须知道仓库的地址，然后使用<span class="git_color">git clone</span>命令克隆。</li>
+			<li>Git支持多种协议，包括<span class="git_color">https</span>，但通过<span class="git_color">ssh</span>支持的原生<span class="git_color">git</span>协议速度最快。</li>
+			<li>查看分支：<span class="git_color">git branch</span></li>
+			<li>创建分支：<span class="git_color">git branch name</span></li>
+			<li>切换分支：<span class="git_color">git checkout name</span></li>
+			<li>创建+切换分支：<span class="git_color">git checkout -b name</span></li>
+			<li>合并某分支到当前分支：<span class="git_color">git merge name</span></li>
+			<li>删除分支：<span class="git_color">git branch -d name</span></li>
+			<li>当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成;用<span class="git_color">git log --graph</span>命令可以看到分支合并图。</li>
+			<li>合并分支时，加上<span class="git_color">--no-ff</span>参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而<span class="git_color">fast forward</span>合并就看不出来曾经做过合并。</li>
+			<li>修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；当手头工作没有完成时，先把工作现场<span class="git_color">git stash</span>一下，然后去修复bug，修复后，再<span class="git_color">git stash pop</span>，回到工作现场。</li>
+			<li>开发一个新feature，最好新建一个分支；如果要丢弃一个没有被合并过的分支，可以通过<span class="git_color">git branch -D name</span>强行删除。</li>
+			<li>查看远程库信息，使用<span class="git_color">git remote -v</span>；</li>
+			<li>本地新建的分支如果不推送到远程，对其他人就是不可见的；</li>
+			<li>从本地推送分支，使用<span class="git_color">git push origin branch-name</span>，如果推送失败，先用<span class="git_color">git pull</span>抓取远程的新提交；</li>
+			<li>在本地创建和远程分支对应的分支，使用<span class="git_color">git checkout -b branch-name origin/branch-name</span>，本地和远程分支的名称最好一致；</li>
+			<li>建立本地分支和远程分支的关联，使用<span class="git_color">git branch --set-upstream branch-name origin/branch-name</span>；</li>
+			<li>从远程抓取分支，使用<span class="git_color">git pull</span>，如果有冲突，要先处理冲突。</li>
+			<li>命令<span class="git_color">git tag name</span>用于新建一个标签，默认为<span class="git_color">HEAD</span>，也可以指定一个<span class="git_color">commit id</span>；</li>
+			<li><span class="git_color">git tag -a tagname -m "blablabla..."</span>可以指定标签信息；</li>
+			<li><span class="git_color">git tag -s tagname -m "blablabla..."</span>可以用PGP签名标签；</li>
+			<li>命令<span class="git_color">git tag</span>可以查看所有标签。</li>
+			<li>命令<span class="git_color">git push origin tagname</span>可以推送一个本地标签；</li>
+			<li>命令<span class="git_color">git push origin --tags</span>可以推送全部未推送过的本地标签；</li>
+			<li>命令<span class="git_color">git tag -d tagname</span>可以删除一个本地标签；</li>
+			<li>命令<span class="git_color">git push origin :refs/tags/tagname</span>可以删除一个远程标签。</li>
+			<li>在<span class="git_color">GitHub</span>上，可以任意<span class="git_color">Fork</span>开源仓库；</li>
+			<li>自己拥有<span class="git_color">Fork</span>后的仓库的读写权限；</li>
+			<li>可以推送<span class="git_color">pull request</span>给官方仓库来贡献代码。</li>
+			<li>忽略某些文件时，需要编写<span class="git_color">.gitignore</span>；</li>
+			<li><span class="git_color">.gitignore</span>文件本身要放到版本库里，并且可以对<span class="git_color">.gitignore</span>做版本管理！</li>			
+		</ol>
+	</body>
+</html>

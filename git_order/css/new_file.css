@@ -1,0 +1,3 @@
+.git_order{list-style-type:none;counter-reset:sectioncounter;width: 1200px;margin: 0 auto;}  
+.git_order li:before {content:counter(sectioncounter) ".";counter-increment:sectioncounter;} 
+.git_color{color:#da314b;}
