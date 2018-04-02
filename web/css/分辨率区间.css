@@ -1,0 +1,40 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*手机总体*/
+@media screen and (max-device-width: 1025px) {
+	body{background:blue;}
+}
+/*pc总体*/
+@media screen and (min-device-width: 1026px) {
+	body{background:red;}
+}
+/*5*/
+@media screen and (min-device-width: 300px) and (max-device-width: 373px) {
+
+}
+/*6*/
+@media screen and (min-device-width: 374px) and (max-device-width: 412px) {
+
+}
+/*plus*/
+@media screen and (min-device-width:413px) and (max-device-width: 767px) {
+
+}
+
+/*ipad*/
+@media screen and (min-device-width:768px) and (max-device-width: 1025px) {
+
+}
+/*1280 1366*/
+@media screen and (min-device-width: 1026px) and (max-device-width: 1367px) {
+
+}
+/*1920*/
+@media screen and (min-device-width: 1368px) and (max-device-width: 1440px) {
+
+}
+/**/
+@media screen and (min-device-width: 1441px) {
+
+}
