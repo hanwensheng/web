@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			* {
+			padding:0;
+			margin:0;
+		}
+		.box-1 {
+			width:640px;
+			height:300px;
+			margin:40px  auto;
+			border:1px solid chartreuse;
+			position:relative;
+			overflow:hidden;
+		}
+		.box-1 li {
+			width:480px;
+			height:320px;
+			float:left;
+			list-style:none;
+			position:absolute;
+			border:1px solid white;
+			overflow:hidden;
+		}
+
+		</style>
+	</head>
+	<body>
+		<div class="box-1">
+		    <ul class="box">
+		        <li><img src="http://www.jq22.com/img/cs/500x300-1.png"></li> 
+		        <li><img src="http://www.jq22.com/img/cs/500x300-2.png"></li>
+		        <li><img src="http://www.jq22.com/img/cs/500x300-3.png"></li>
+		        <li><img src="http://www.jq22.com/img/cs/500x300-4.png"></li>
+		        <li><img src="http://www.jq22.com/img/cs/500x300-5.png"></li>
+		        <li><img src="http://www.jq22.com/img/cs/500x300-6.png"></li>
+		        <li><img src="http://www.jq22.com/img/cs/500x300-7.png"></li>
+		        <li><img src="http://www.jq22.com/img/cs/500x300-8.png"></li>
+		    </ul>
+		</div>
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
+		<script>
+			$(function(){
+				$(".box-1 ul li").each(function(i) {
+
+				    $(".box-1 ul li").eq(i).css({
+				        backgroundImage: "url(img/pic" + (i + 1) + ".jpg)",
+				        zIndex: i,
+				        left: i * 80
+				    })
+				})
+				$(".box-1 ul li").hover(function() {
+				    var index = $(this).index();
+				    for (var i = 0; i <= index; i++) {
+				        $(".box-1 ul li").eq(i).stop().animate({
+				            left: i * 30
+				        })
+				    }
+				
+				    for (; i < $("li").length; i++) {
+				        $(".box-1 ul li").eq(i).stop().animate({
+				            left: i * 30 + 430
+				        })
+				    }
+				
+				}, function() {
+				    $(".box-1 ul li").each(function(i) {
+				        $(".box-1 ul li").eq(i).stop().animate({
+				            left: i * 80
+				        })
+				    })
+				})
+			})
+		</script>
+	</body>
+</html>

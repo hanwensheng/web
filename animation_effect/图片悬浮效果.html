@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			body {
+				background:#000;
+			}
+			.bg {
+				width:600px;
+				height:328px;
+				background:url('http://www.jq22.com/img/cs/500x500-5.png') no-repeat;
+				background-size:cover;
+				margin:200px auto;
+				display:flex;
+				cursor:pointer;
+			}
+			.pattice {
+				display:block;
+				width:75%;
+				height:75%;
+				margin:auto;
+				cursor:pointer;
+				text-align:center;
+				position:relative;
+				visibility:hidden;
+			}
+			.bg:hover div.pattice {
+				visibility:visible;
+			}
+			.pattice:before {
+				content:'';
+				position:absolute;
+				width:100%;
+				height:0;
+				left:0;
+				top:50%;
+				border-style:solid;
+				border-color:white;
+				border-width:0 4px;
+				transition:all .3s;
+				box-sizing:border-box;
+			}
+			.pattice:after {
+				content:'';
+				position:absolute;
+				width:0;
+				height:100%;
+				top:0;
+				left:50%;
+				border-style:solid;
+				border-color:white;
+				border-width:4px 0;
+				transition:all .3s;
+				box-sizing:border-box;
+			}
+			.bg:hover .pattice:before {
+				height:100%;
+				top:0;
+			}
+			.bg:hover .pattice:after {
+				width:100%;
+				left:0;
+			}
+			.pattice p {
+				font-size:20px;
+				color:#fff;
+				font-weight:bold;
+				position:relative;
+				visibility:hidden;
+			}
+			.bg:hover p {
+				visibility:visible;
+				background-image:-webkit-linear-gradient(left,blue,red 25%,blue 50%,red 75%,blue 100%);
+				color:transparent;
+				-webkit-text-fill-color:transparent;
+				-webkit-background-clip:text;
+				-webkit-background-size:200% 100%;
+				background-size:200% 100%;
+			}
+			.bg:hover p.title {
+				animation:title .4s forwards,test 4s infinite linear;
+			}
+			.bg:hover p.subtitle {
+				animation:subtitle .4s forwards,test 4s infinite linear;
+			}
+			@keyframes title {
+				from {
+				top:100px
+			}
+			to {
+				top:70px
+			}
+			}@-webkit-keyframes title {
+				from {
+				top:100px
+			}
+			to {
+				top:70px
+			}
+			}@keyframes subtitle {
+				from {
+				top:110px
+			}
+			to {
+				top:80px
+			}
+			}@-webkit-keyframes subtitle {
+				from {
+				top:110px
+			}
+			to {
+				top:80px
+			}
+			}@keyframes test {
+				0% {
+				background-position:0 0;
+			}
+			100% {
+				background-position:-100% 0;
+			}
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="bg">
+		    <div class="pattice">
+		        <p class="title">MOUSE SUSPENSION EFFECT</p>
+		        <p class="subtitle">README MORE</p>
+		    </div>
+		</div>
+		
+	</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+.box{
+      position: relative;
+    }
+    .animate{
+      color: #ed6868;
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: 30px;
+      border-bottom:2px solid pink;
+    }
+    .animate:hover::before{
+      max-width: 100%;
+    }
+    .animate::before{
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: 30px;
+      overflow: hidden; 
+      max-width: 0;
+      color: #000;
+      content: attr(data-hover);
+      border-bottom:2px solid orange;
+      -webkit-transition: max-width 0.5s;
+      -moz-transition: max-width 0.5s;
+      transition: max-width 0.5s;
+    }
+
+
+
+		</style>
+	</head>
+	<body>
+		 <div class="box">
+		    <a data-hover="lovemiaomiao" class="animate">lovemiaomiao</a>
+		  </div>
+	</body>
+</html>

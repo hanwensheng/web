@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+		 * {
+				margin:0;
+				padding:0;
+			}
+			.small_box {
+				width:180px;
+				height:180px;
+				margin-left:10px;
+				margin-top:10px;
+				position:relative;
+			}
+			.small_box img {
+				width:180px;
+				height:180px;
+			}
+			.small_box .mask {
+				position:absolute;
+				width:100%;
+				height:100%;
+				background:rgba(0,0,0,0.5);
+				opacity:0;
+				z-index:2;
+				cursor:move;
+			}
+			.small_box .float_layer {
+				position:absolute;
+				width:50px;
+				height:50px;
+				background:rgba(0,0,0,0.5);
+				display:none;
+			}
+			.big_box {
+				position:absolute;
+				left:200px;
+				top:10px;
+				width:250px;
+				height:250px;
+				overflow:hidden;
+				display:none;
+			}
+			.big_box img {
+				position:absolute;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="small_box">
+		    <span class="mask"></span>
+		    <span class="float_layer"></span>
+		   	<img src="img/54205424_big.jpg"/>
+		</div>
+		<div class="big_box">
+		    <img src="img/54205424_big.jpg"/>
+		</div>
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
+		<script>
+			$(function(){
+				$(".mask").mouseover(function() {
+				    $(".float_layer").show()
+				    $(".big_box").show()
+				})
+				$(".mask").mouseout(function() {
+				    $(".float_layer").hide()
+				    $(".big_box").hide()
+				})
+				
+				
+				
+				$(".mask").mousemove(function(e) {
+				    var l = e.pageX - $(".small_box").offset().left - ($(".float_layer").width() / 2)
+				    var t = e.pageY - $(".small_box").offset().left - ($(".float_layer").height() / 2)
+				    if (l < 0) {
+				        l = 0
+				    }
+				    if (l > $(this).width() - $(".float_layer").width()) {
+				        l = $(this).width() - $(".float_layer").width()
+				    }
+				    if (t < 0) {
+				        t = 0
+				    }
+				    if (t > $(this).height() - $(".float_layer").height()) {
+				        t = $(this).height() - $(".float_layer").height()
+				    }
+				
+				    $(".float_layer").css({
+				        "left": l,
+				        "top": t
+				    })
+				    var pX = l / ($(".mask").width() - $(".float_layer").width())
+				    var pY = t / ($(".mask").height() - $(".float_layer").height())
+				    $(".big_box img").css({
+				        "left": -pX * ($(".big_box img").width() - $(".big_box").width()),
+				        "top": -pY * ($(".big_box img").height() - $(".big_box").height())
+				    })
+				
+				})
+			
+			})
+		</script>
+	</body>
+</html>

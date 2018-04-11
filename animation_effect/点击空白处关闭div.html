@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			#btn{
+		        display: block;
+		        margin: 200px auto;
+		        width: 50px;
+		        padding: 5px 20px;
+		        background: red;
+		        color:#fff;
+		        position: relative;
+		    }
+		    #pop{
+		        background:#CCC;
+		        border: 1px solid #000;
+		        color:#000;
+		        position:absolute; 
+		        left:0; 
+		        top:50px;
+		        width:200px;
+		        height:500px; 
+		        display:none;
+		    }
+		</style>
+	</head>
+	<body>
+		<span id="btn">打开层
+		    <div id="pop">随便点击空白的地方，我会关闭</div>
+		</span>
+		<!--<script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>-->
+		<script>
+			function $(id) {
+			    return document.getElementById(id);
+			}
+			window.onload = function() {
+			    document.onclick = function(e) {
+			        $("pop").style.display = "none";
+			    }
+			    $("btn").onclick = function(e) {
+			        $("pop").style.display = "block";
+			        e = e || event;
+			        stopFunc(e);
+			    }
+			    $("pop").onclick = function(e) {
+			        e = e || event;
+			        stopFunc(e);
+			    }
+			}
+			
+			function stopFunc(e) {
+			    e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			  #canvas {
+				width:400px;
+				height:432px;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="400" height="432" style="width:400px;height:432px"></canvas>
+		<script>
+			class Lamp {
+    /**
+     *
+     * @param canvas_id canvas元素id
+     * @param img       图片路径
+     * @param cover_color 遮盖颜色，与cxt.fillStyle一致
+     * @param radius    显示圆环大小
+     */
+    constructor(canvas_id, img, cover_color, radius) {
+        //基本属性
+        this.img = document.createElement("img");
+        this.img.src = img;
+        this.ctx = document.getElementById(canvas_id).getContext("2d");
+        this.canvas = this.ctx.canvas;
+
+        this.hideC1 = document.createElement("canvas").getContext("2d");
+
+        this.overColor = cover_color;
+        this.radius = radius;
+        this.x = 0;
+        this.y = 0;
+
+        this.img.onload = () => this.init();
+    }
+
+    init() {
+        //初始化画布
+        this.ctx.fillStyle = this.overColor;
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        this.overImgData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
+
+        //初始化C1 C2并绑定监听事件
+        this.initHideC1();
+        this.canvas.addEventListener('mousemove', (event) => this.mouseMove(event));
+        this.canvas.addEventListener('mouseout', (event) => this.mouseOut(event));
+    }
+    //初始化c1
+    initHideC1() {
+        let t = this.hideC1.canvas;
+        t.width = this.canvas.width;
+        t.height = this.canvas.height;
+        this.hideC1.drawImage(this.img, 0, 0, this.img.width, this.img.height);
+        return this;
+    }
+
+    //鼠标在画布上移动
+    mouseMove(e) {
+        let t = this.canvas.getBoundingClientRect();
+        this.x = e.clientX - t.left - this.radius;
+        this.y = e.clientY - t.top - this.radius;
+        this.light();
+        return this;
+    }
+
+    //鼠标移除
+    mouseOut() {
+        this.ctx.putImageData(this.overImgData, 0, 0);
+        return this;
+    }
+
+
+    //添加聚光灯效果
+    light() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.putImageData(this.overImgData, 0, 0);
+
+        this.ctx.beginPath();
+        this.ctx.arc(this.x + this.radius, this.y + this.radius, this.radius, 0, Math.PI * 2);
+        this.ctx.fillStyle = this.ctx.createPattern(this.hideC1.canvas, 'no-repeat');
+        this.ctx.fill();
+    }
+}
+new Lamp('canvas', "http://www.jq22.com/demo/jquerylbt201801062335/images/a1.png", 'rgba(45,0,0,0.7)', 150);
+		</script>
+	</body>
+</html>

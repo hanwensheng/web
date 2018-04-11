@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			ul {
+				overflow:hidden;
+				position:relative;
+				list-style:none;
+			}
+			ul li {
+				float:left;
+				padding:10px 20px;
+				background:skyblue;
+				color:#fff;
+				font-size:20px;
+				cursor:pointer;
+				transition:all .2s linear;
+			}
+			ul span {
+				display:block;
+				width:100%;
+				height:2px;
+				background:#f60;
+				position:absolute;
+				bottom:0;
+			}
+			ul li:hover {
+				color:red;
+			}
+
+		</style>
+	</head>
+	<body>
+		<ul>
+		    <li>导航栏1</li>
+		    <li>导航栏2</li>
+		    <li>导航栏3</li>
+		    <li>导航栏4</li>
+		    <li>导航栏5</li>
+		    <span class="line"></span>
+		</ul>
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
+		<script>
+			$(function(){
+				$("ul span").css({
+				    'left': $("ul li").eq(0).position().left,
+				    'width': $("ul li").eq(0).outerWidth()
+				});
+				$("ul li").hover(function() {
+				    $("ul span").stop().animate({
+				        left: $(this).position().left,
+				        width: $(this).outerWidth()
+				    });
+				}, function() {
+				    $("ul span").stop().animate({
+				        left: $("ul li").eq(0).position().left,
+				        width: $("ul li").eq(0).outerWidth()
+				    });
+				})
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			body,html {
+				overflow:hidden;
+			}
+			#box {
+				position:absolute;
+				top:0;
+				left:0;
+				width:100px;
+				height:100px;
+				background:pink;
+				cursor:move;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<!--<script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>-->
+		<script>
+			var oBox = document.getElementById('box');
+			move(oBox)
+			
+			function move(obj) {
+			    obj.onmousedown = function(e) { //鼠标按下事件
+			        e = e || window.event; //事件对象
+			        var x_down = e.clientX; //鼠标按下X的坐标
+			        var y_down = e.clientY; //鼠标按下Y的坐标
+			        var leftDown = this.offsetLeft; //获取盒子的初始left值
+			        var topDown = this.offsetTop; //获取盒子的初始top值
+			        document.onmousemove = function(e) { //鼠标移动事件
+			            e = e || window.event;
+			            var x_move = e.clientX; //鼠标移动X的坐标
+			            var y_move = e.clientY; //鼠标移动Y的坐标
+			            //移动的坐标减去按下的坐标 = 移动的距离
+			            var x_now = x_move - x_down;
+			            var y_now = y_move - y_down;
+			            //赋值给left和top
+			            obj.style.top = topDown + y_now + 'px';
+			            obj.style.left = leftDown + x_now + 'px';
+			        }
+			        document.onmouseup = function() { //鼠标抬起事件
+			            //清除移动和抬起事件
+			            this.onmousemove = this.onmouseup = null
+			        }
+			        return false //阻止默认事件
+			    }
+			}
+		</script>
+	</body>
+</html>

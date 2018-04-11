@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>	</title>
+		<style>
+			.box {
+				width:500px;
+			}
+			#test {
+				width:1px;
+				height:27px;
+				line-height:27px;
+				text-align:center;
+				color:#fff;
+				background:#25c037;
+				border-radius:20px;
+			}
+			#run {
+				width:60px;
+				height:30px;
+				line-height:30px;
+				border:0;
+				color:#fff;
+				border-radius:20px;
+				background:pink;
+				text-align:center;
+				margin-top:10px;
+				float:right;
+			}
+			#run:focus {
+				outline:none;
+			}
+
+
+			</style>
+	</head>
+	<body>
+		<div class="box">
+		    <div id="test">0%</div>
+		    <input type="button" value="Run" id="run">
+		</div>
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
+		<script>
+			 $(function() {
+			     window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+			     var start = null;
+			     var ele = document.getElementById("test");
+			     var progress = 0;
+			
+			     function step(timestamp) {
+			         progress += 1;
+			         ele.style.width = progress + "%";
+			         ele.innerHTML = progress + "%";
+			         if (progress < 100) {
+			             start = requestAnimationFrame(step);
+			         }
+			     }
+			     requestAnimationFrame(step);
+			     document.getElementById("run").addEventListener("click", function() {
+			         ele.style.width = "1px";
+			         progress = 0;
+			         cancelAnimationFrame(start);
+			         requestAnimationFrame(step);
+			     }, false);
+			 })
+		</script>
+	</body>
+</html>

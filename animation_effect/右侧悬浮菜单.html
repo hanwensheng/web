@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			a:hover {
+			    text-decoration:none;
+			}
+			ul,li,p {
+			    margin:0; padding:0;
+			}
+			@font-face {
+			  font-family: 'iconfont';  /* project id 550966 */
+			  src: url('//at.alicdn.com/t/font_550966_bz9u7l25jexw29.eot');
+			  src: url('//at.alicdn.com/t/font_550966_bz9u7l25jexw29.eot?#iefix') format('embedded-opentype'),
+			  url('//at.alicdn.com/t/font_550966_bz9u7l25jexw29.woff') format('woff'),
+			  url('//at.alicdn.com/t/font_550966_bz9u7l25jexw29.ttf') format('truetype'),
+			  url('//at.alicdn.com/t/font_550966_bz9u7l25jexw29.svg#iconfont') format('svg');
+			}
+			.iconfont{
+			    font-family:"iconfont" !important;
+			    font-size:16px;font-style:normal;
+			    -webkit-font-smoothing: antialiased;
+			    -webkit-text-stroke-width: 0.2px;
+			    -moz-osx-font-smoothing: grayscale;}
+			.form-control {
+			    display: block;
+			    width: 100%;
+			    height: 32px;
+			    padding: 4px 12px;
+			    font-size: 14px;
+			    line-height: 1.42857143;
+			    color: #555;
+			    background-color: #fff;
+			    background-image: none;
+			    border: 1px solid #ccc;
+			    border-radius: 2px;
+			    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+			    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+			    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+			    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+			    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+			}
+			.form-control:focus {
+			    border-color: #66afe9;
+			    outline: 0;
+			    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
+			    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
+			}
+			.cndns-right {
+			    position: fixed;
+			    right: 15px;
+			    top: 50%;
+			    margin-top: -150px;
+			    z-index: 100
+			}
+			
+			.cndns-right-meau {
+			    position: relative;
+			}
+			
+			.cndns-right-btn {
+			    width: 48px;
+			    height: 48px;
+			    border: 1px solid #ddd;
+			    text-align: center;
+			    display: block;
+			    margin-bottom: 6px;
+			    position: relative;
+			    background-color: #fff;
+			}
+			.cndns-right-btn:hover {
+			    text-decoration: none;
+			}
+			a.cndns-right-btn i {
+			    display: inline-block;
+			    margin-top: 5px;
+			    color: #999;
+			    font-size: 24px;
+			}
+			.cndns-right-btn p {
+			    text-decoration: none;
+			}
+			
+			.cndns-right-btn span {
+			    color: #848484;
+			    font-size: 26px;
+			    line-height: 48px;
+			}
+			
+			.cndns-right-btn p {
+			    color: #cf3529;
+			    font-size: 14px;
+			    line-height: 18px;
+			    padding-top: 5px;
+			    text-align: center;
+			    display: none;
+			}
+			
+			.cndns-right-meau:hover .cndns-right-btn i {
+			    display: none
+			}
+			
+			.cndns-right-meau:hover .cndns-right-btn p {
+			    display: block;
+			}
+			
+			.meau-car .cndns-right-btn {
+			    border-color: #cf3529;
+			    margin-bottom: 20px;
+			}
+			
+			.meau-car.cndns-right-meau:hover .cndns-right-btn {
+			    background-color: #cf3529;
+			}
+			
+			.meau-car.cndns-right-meau:hover .cndns-right-btn span {
+			    color: #fff;
+			    display: block;
+			}
+			
+			.meau-car .cndns-right-btn span {
+			    color: #cf3529;
+			}
+			
+			.meau-sev .cndns-right-btn p {
+			    color: #fff
+			}
+			
+			.meau-sev .cndns-right-btn span {
+			    color: #fff
+			}
+			
+			.meau-top .cndns-right-btn em {
+			    display: block;
+			    font-style: normal;
+			    font-size: 12px;
+			    line-height: 12px;
+			    color: #999
+			}
+			.meau-top .cndns-right-btn i.icon {
+			    font-size: 16px;
+			    margin-top: 2px;
+			    display: inline-block;
+			}
+			
+			.meau-top.cndns-right-meau:hover .cndns-right-btn {
+			    background-color: #cf3529;
+			}
+			
+			.meau-top.cndns-right-meau:hover .cndns-right-btn i {
+			    display: block;
+			    color: #fff
+			}
+			
+			.meau-top.cndns-right-meau:hover .cndns-right-btn em {
+			    color: #fff;
+			}
+			
+			.cndns-right-box {
+			    position: absolute;
+			    top: -15px;
+			    right: 48px;
+			    padding-right: 25px;
+			    display: none;
+			}
+			
+			.cndns-right-box .box-border {
+			    border: 1px solid #ccc;
+			    border-top: 4px solid #cf3529;
+			    padding: 20px;
+			    background-color: #fff;
+			    -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .15);
+			    -moz-box-shadow: 0 3px 8px rgba(0, 0, 0, .15);
+			    box-shadow: 0 3px 8px rgba(0, 0, 0, .15);
+			    position: relative
+			}
+			
+			.cndns-right-box .box-border .arrow-right {
+			    display: block;
+			    width: 13px;
+			    height: 16px;
+			    background: url(../images/arrow.png) no-repeat;
+			    position: absolute;
+			    right: -13px;
+			    top: 26px;
+			}
+			
+			.cndns-right-box .box-border .sev-t i.icon {
+			    font-size: 42px;
+			    float: left;
+			    display: block;
+			    line-height: 56px;
+			    margin-right: 20px;
+			    color: #d3d3d3
+			}
+			
+			.cndns-right-box .box-border .sev-t p {
+			    float: left;
+			    color: #cf3529;
+			    font-size: 20px;
+			    line-height: 28px;
+			}
+			
+			.cndns-right-box .box-border .sev-t p i {
+			    display: block;
+			    font-size: 14px;
+			    color: #aaa;
+			    font-style: normal;
+			}
+			
+			.cndns-right-box .box-border .sev-b {
+			    padding-top: 15px;
+			    margin-top: 15px;
+			    border-top: 1px solid #e4e4e4
+			}
+			
+			.cndns-right-box .box-border .sev-b h4 {
+			    color: #666;
+			    font-size: 14px;
+			    font-weight: normal;
+			    padding-bottom: 15px;
+			}
+			.cndns-right-box .box-border .sev-b textarea {
+			    height: 100px;
+			}
+			.cndns-right-box .box-border .btnbox {
+			    height: 40px;
+			    margin-top: 10px;
+			    text-align: right;
+			}
+			
+			
+			.meau-sev .cndns-right-box .box-border {
+			    width: 430px;
+			}
+			
+			.meau-contact .cndns-right-box .box-border {
+			    width: 250px;
+			}
+			.sev-t {
+			    width: 100%;
+			    overflow: hidden;
+			}
+			
+			.cndns-right-meau:hover .cndns-right-box {
+			    display: block
+			}
+			
+			.meau-code .cndns-right-box {
+			    top: inherit;
+			    bottom: -35px;
+			}
+			
+			.meau-code .cndns-right-box .box-border {
+			    width: 156px;
+			    text-align: center;
+			    border-top: 1px solid #ccc;
+			}
+			
+			.meau-code .cndns-right-box .box-border i {
+			    display: block;
+			    color: #f66e06;
+			    font-size: 12px;
+			    line-height: 26px;
+			    font-style: normal;
+			}
+			
+			.meau-code .cndns-right-box .box-border .arrow-right {
+			    top: inherit;
+			    bottom: 50px;
+			}
+			
+			.meau-sev .cndns-right-btn .demo-icon {
+			    display: none;
+			}
+			
+			.meau-sev:hover .cndns-right-btn {
+			    background: #cf3529;
+			}
+			
+			.meau-zs .cndns-right-btn {
+			    background-color: #cf3529;
+			    color: #fff;
+			    margin-top: 80px;
+			    border-color: #cf3529;
+			}
+			
+			.meau-zs .cndns-right-btn span {
+			    color: #fff
+			}
+			
+			.meau-zs .cndns-right-btn p {
+			    color: #fff
+			}
+		</style>
+	</head>
+	<body>
+		<div style="height:2000px;"></div>
+		<div class="cndns-right">
+		    <div class="cndns-right-meau meau-sev">
+		        <a href="javascript:" class="cndns-right-btn">
+		            <i class="icon iconfont icon-fankui"></i>
+		            <p>立即<br>咨询</p>
+		        </a>
+		        <div class="cndns-right-box">
+		            <div class="box-border">
+		                <div class="sev-t">
+		                    <i class="icon iconfont icon-fankui"></i>
+		                    <p>立即咨询
+		                        <i>服务时间：9:00-24:00</i>
+		                    </p>
+		                    <div class="clear"></div>
+		                </div>
+		                <div class="sev-b">
+		                    <h4>您在使用过程中遇到问题，可以告诉我们：</h4>
+		                    <textarea class="form-control" placeholder="非常感谢您的反馈，我们将积极改进"></textarea>
+		                </div>
+		                <div class="btnbox">
+		                    <button class="btn">取消</button>
+		                    <button class="btn btn-primary">提交</button>
+		                </div>
+		                <span class="arrow-right"></span>
+		            </div>
+		        </div>
+		    </div>
+		    <div class="cndns-right-meau meau-contact">
+		        <a href="javascript:" class="cndns-right-btn">
+		            <i class="icon iconfont icon-dianhua1"></i>
+		            <p>客服<br>热线</p>
+		        </a>
+		        <div class="cndns-right-box">
+		            <div class="box-border">
+		                <div class="sev-t">
+		                    <i class="icon iconfont icon-dianhua1"></i>
+		                    <p>400-920-9933
+		                        <br>
+		                        <i>7*24小时客服服务热线</i>
+		                    </p>
+		                    <div class="clear"></div>
+		                </div>
+		                <span class="arrow-right"></span>
+		            </div>
+		        </div>
+		    </div>
+		    <div class="cndns-right-meau meau-code">
+		        <a href="javascript:" class="cndns-right-btn">
+		            <i class="icon iconfont icon-weixin"></i>
+		            <p>关注<br>微信</p>
+		        </a>
+		        <div class="cndns-right-box">
+		            <div class="box-border">
+		                <div class="sev-t">
+		                    <img src="img/54205424_big.jpg">
+		                    <i>关注官方微信</i>
+		                </div>
+		                <span class="arrow-right"></span>
+		            </div>
+		        </div>
+		    </div>
+		    <div class="cndns-right-meau meau-code shadowbox">
+		        <a href="javascript:" class="cndns-right-btn">
+		            <i class="icon iconfont icon-erweima"></i>
+		            <p>下载APP</p>
+		        </a>
+		        <div class="cndns-right-box">
+		            <div class="box-border">
+		                <div class="sev-t">
+		                    <img src="img/54205424_big.jpg">
+		                    <i>关注官方微信</i>
+		                </div>
+		                <span class="arrow-right"></span>
+		            </div>
+		        </div>
+		    </div>
+		    <div class="cndns-right-meau meau-top" id="top-back" style="display: none;">
+		        <a href="javascript:;" class="cndns-right-btn">
+		            <i class="icon iconfont icon-up"></i>
+		            <em>顶部</em>
+		        </a>
+		    </div>
+		
+		</div>
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
+		<script>
+			$(function(){
+				//置顶图标显示
+			    $('#top-back').hide()
+			    $(window).scroll(function () {
+			        if ($(this).scrollTop() > 350) {
+			            $("#top-back").fadeIn();
+			        }
+			        else {
+			            $("#top-back").fadeOut();
+			        }
+			    })
+			    //置顶事件
+			   $('.cndns-right-btn').click(function(){
+			        $('body,html').animate({ scrollTop: 0 }, 300);
+			    })
+			})
+		</script>
+	</body>
+</html>

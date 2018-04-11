@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			.set {
+				position:relative;
+				font-weight:400;
+				text-align:center;
+				width:200px;
+				/* change the width of canvas*/
+			  height:200px;
+				/* change the height of canvas*/
+			  line-height:200px;
+				overflow:hidden;
+				position:relative;
+				z-index:0;
+				color:#000000;
+				/* tetx color*/
+			  background:#fafafa;
+				/* backgroud color*/
+			  cursor:pointer;
+				/* background-image:url("http://www.jq22.com/img/cs/500x500-1.png");
+				put the backgroud image here*/
+			}
+			.anim {
+				-moz-transform:translateY(-50%) translateX(-50%);
+				-ms-transform:translateY(-50%) translateX(-50%);
+				-webkit-transform:translateY(-50%) translateX(-50%);
+				transform:translateY(-50%) translateX(-50%);
+				position:absolute;
+				top:50%;
+				left:50%;
+				z-index:-1;
+			}
+			.anim:before {
+				position:relative;
+				content:'';
+				display:block;
+				margin-top:100%;
+				background:#6CB1FF;
+			}
+			.anim:after {
+				content:'';
+				position:absolute;
+				top:0;
+				bottom:0;
+				left:0;
+				right:0;
+				border-radius:50%;
+			}
+			.hoverable:hover > .anim:after {
+				-webkit-animation:anim-out-pseudo 0.75s;
+				animation:anim-out-pseudo 0.75s;
+			}
+			.set:hover > .anim {
+				-webkit-animation:anim-out 0.75s;
+				animation:anim-out 0.75s;
+			}
+			@-webkit-keyframes anim-out-pseudo {
+				0% {
+				background:rgba(255,203,0,50);
+				/*ripple color and tranparent*/
+			}
+			100% {
+				background:transparent;
+			}
+			}@-webkit-keyframes anim-out {
+				0% {
+				width:0%;
+			}
+			100% {
+				width:100%;
+			}
+		}
+		</style>
+	</head>
+	<body>
+		<div class="set hoverable">
+			<div class="anim"></div>
+			<p> ripple effect </p>
+		</div>
+
+	</body>
+</html>

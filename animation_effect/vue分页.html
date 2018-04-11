@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/vue.min.js" ></script>
+		<style>
+			.content ul {
+				width:200px;
+				margin:100px auto;
+				border:1px solid #000;
+			}
+			ul,li {
+				list-style:none;
+				margin:0;
+				padding:0;
+			}
+			.f_left {
+				float:left;
+			}
+			.clearfix:after {
+				content:'';
+				display:block;
+				clear:both;
+				height:0;
+				visibility:hidden;
+			}
+			.page_bar {
+				margin:100px auto;
+				text-align:center;
+			}
+			.page_bar a,.page_bar span {
+				display:inline-block;
+				padding:5px 12px;
+				border:1px solid gray;
+				margin:0;
+				text-decoration:none;
+				letter-spacing:0;
+				word-spacing:0;
+				border-radius:4px;
+			}
+			.page_bar .page {
+				margin:0 2px;
+			}
+			.page_bar .page.active {
+				background:gray;
+				color:#fff;
+			}
+			[v-cloak] {
+				display:none;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id="app" class="content">
+		    <ul>
+		        <li v-for="(i,k) in pageData">{{i}}</li>
+		    </ul>
+		    <div class="page_bar">
+		        <a href="javascript:;" @click="pageTurning(0)">首页</a>
+		        <a href="javascript:;" @click="pageTurning('before')">上一页</a>
+		        <span v-if="ellipsis1">...</span>
+		        <a href="javascript:;" class="page" v-for="(i,k) in max" :class="{active:idx==k}" v-if="range(k)" @click="pageTurning(k)" v-cloak="">{{k+1}}</a>
+		        <span v-if="ellipsis2">...</span>
+		        <a href="javascript:;" @click="pageTurning('next')">下一页</a>
+		        <a href="javascript:;" @click="pageTurning(max-1)">尾页</a>
+		        <span>第{{idx+1}}页</span>
+		        <span>总页数{{max}}</span>
+		    </div>
+		</div>
+		<script>
+			new Vue({
+				    el: '#app',
+				    data: {
+				        data: [],
+				        pageDataNum: 6,
+				        idx: 0,
+				        idxRange: 6,
+				        ellipsis1: false,
+				        ellipsis2: false
+				    },
+				    mounted: function() {
+				        for (var i = 0; i <= 88; i++) {
+				            this.data.push(i);
+				        }
+				    },
+				    methods: {
+				        pageTurning: function(str) {
+				            if (str === "next") {
+				                if (this.idx < this.max - 1) {
+				                    this.idx++;
+				                }
+				            } else if (str === "before") {
+				                if (this.idx > 0) {
+				                    this.idx--;
+				                }
+				            } else if (typeof str === "number") {
+				                this.idx = str;
+				            }
+				        },
+				        range: function(k) {
+				            var idxStart;
+				            var idxEnd;
+				            if (!(this.idxRange % 2)) {
+				                this.idxRange -= 1;
+				            }
+				            var x = this.idxRange / 2;
+				            //尾部区间
+				            if (this.idx > (this.max - (this.idxRange - 1))) {
+				                idxStart = this.max - this.idxRange;
+				                idxEnd = this.max - 1;
+				                this.ellipsis1 = true;
+				                this.ellipsis2 = false;
+				            }
+				            // 中间区间
+				            if (this.idx > x && this.idx <= (this.max - (this.idxRange - 1))) {
+				                idxStart = this.idx - x;
+				                idxEnd = this.idx + x;
+				                this.ellipsis1 = true;
+				                this.ellipsis2 = true;
+				            }
+				            // 开始区间
+				            if (this.idx < x) {
+				                idxStart = 0;
+				                idxEnd = this.idxRange;
+				                this.ellipsis1 = false;
+				                this.ellipsis2 = true;
+				            }
+				
+				            if (idxStart && idxEnd) {
+				                return k <= idxEnd && k >= idxStart;
+				            } else {
+				                return k < this.idxRange;
+				            }
+				        }
+				    },
+				    computed: {
+				        max: function() {
+				            return Math.ceil(this.data.length / this.pageDataNum);
+				        },
+				        start: function() {
+				            return this.idx * this.pageDataNum;
+				        },
+				        end: function() {
+				            return (this.idx + 1) * this.pageDataNum;
+				        },
+				        pageData: function() {
+				            return this.data.slice(this.start, this.end);
+				        }
+				    }
+				
+				});
+		</script>
+	</body>
+</html>

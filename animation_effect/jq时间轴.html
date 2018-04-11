@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			#sidenav  li {
+			margin:20px 0;
+			list-style:none;
+			overflow:hidden;
+			list-style:none;
+			font-size:16px;
+		}
+		#sidenav li:hover a {
+			color:#ff6a6a;
+		}
+		#sidenav li a {
+			color:#494949;
+			-webkit-transition:all 0.28s ease-out;
+			-moz-transition:all 0.28s ease-out;
+			-ms-transition:all 0.28s ease-out;
+			-o-transition:all 0.28s ease-out;
+			transition:all 0.28s ease-out;
+			text-decoration:none;
+		}
+		#sidenav li.point_a a {
+			color:#ff6a6a;
+		}
+		.point_a a {
+			color:#ff6a6a;
+		}
+		.dark {
+			display:inline-block;
+			width:8px;
+			height:8px;
+			border:3px solid #767676;
+			border-radius:50%;
+			float:left;
+			margin-top:4px;
+			position:absolute;
+			left:117px;
+			background:#fff;
+			/* top:4px;
+			*/
+		}
+		#sidenav i.point {
+			background:#ff6a6a;
+			width:14px;
+			height:14px;
+			display:inline-block;
+			border-radius:50%;
+			float:left;
+			margin-top:4px;
+			position:absolute; 
+			left:117px;
+		}
+		#sidenav span {
+			padding-left:44px;
+		}
+		.branch {
+			position:absolute;
+			z-index:-999;
+			border-right:1px solid #ccc;
+			width:3px;
+			height:420px;
+			left:121px;
+			top:-20px;
+		}
+
+
+		</style>
+	</head>
+	<body>
+		<div class="sidebar">
+		    <div class="branch"></div>
+		    <ul id="sidenav">
+		        <li class="point_a"><a href="###">1月20日<span>广州</span></a><i class="point"></i></li>
+		        <li><a href="###">1月20日<span>广州</span></a><i></i></li>
+		        <li><a href="###">1月20日<span>深圳</span></a><i></i></li>
+		        <li><a href="###">1月20日<span>上海</span></a><i></i></li>
+		        <li><a href="###">1月20日<span>北京</span></a><i></i></li>
+		        <li><a href="###">1月20日<span>杭州</span></a><i></i></li>
+		        <li><a href="###">1月20日<span>厦门</span></a><i></i></li>
+		        <li><a href="###">1月20日<span>浙江</span></a><i></i></li>
+		        <li><a href="###">1月20日<span>西安</span></a><i></i></li>
+		    </ul>
+		</div>
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
+		<script>
+			$(function(){
+			
+			   $('#sidenav li:first').siblings().find('i').addClass('dark'); //除当前选中外，其他i元素设置dark属性
+			   var links = $('#sidenav li').find('a'); //赋予变量links 为元素a
+			   links.each(function(i) { //遍历所有元素a
+			       $(this).click(function() { //点击事件
+			           links.eq(i).next().addClass('point').removeClass('dark'); //当前圆点从暗变亮，移除类dark，添加point。
+			           links.eq(i).css('color', '#ff6a6a'); //当前a元素变亮
+			           ;
+			           var links_par = links.eq(i).parent() //赋予变量links_par 为当前a元素的父元素li
+			           links_par.siblings().find('a').next().addClass('dark').removeClass('point'); //当前li元素的其他兄弟元素下的i元素变暗
+			           links_par.siblings().find('a').css('color', ''); //当前li元素的其他兄弟元素下的a元素变暗
+			           links_par.siblings().removeClass('point_a'); //移除初始选中默认的样式
+			
+			       });
+			   });
+			
+			
+			})
+		</script>
+	</body>
+</html>

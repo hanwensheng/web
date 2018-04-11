@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			* {
+			margin:0;
+			padding:0;
+		}
+		body {
+			font:12px/1.8 Arial;
+			color:#666;
+		}
+		h1.tit-h1 {
+			font-size:38px;
+			text-align:center;
+			margin:30px 0 15px;
+			color:#f60;
+		}
+		.go-back {
+			text-align:center;
+			border-top:1px dashed #ccc;
+			padding:10px;
+			margin-top:20px;
+			font-size:40px;
+		}
+		.wrap {
+			border:1px dashed #ccc;
+			background:#f8f8f8;
+			padding:20px;
+		}
+		/* 本案例需要的css样式 */
+		ul,li {
+			list-style:none;
+		}
+		.tab {
+			width:450px;
+			margin:0 auto 50px;
+		}
+		.tab-hd {
+			background:#F93;
+			overflow:hidden;
+			zoom:1;
+		}
+		.tab-hd li {
+			float:left;
+			width:150px;
+			color:#fff;
+			text-align:center;
+			cursor:pointer;
+		}
+		.tab-hd li.active {
+			background:#F60;
+		}
+		.tab-bd li {
+			display:none;
+			padding:20px;
+			border:1px solid #ddd;
+			border-top:0 none;
+			font-size:24px;
+		}
+		.tab-bd li.thisclass {
+			display:list-item;
+		}
+
+
+		</style>
+	</head>
+	<body>
+		<h1 class="tit-h1">jQuery tab选项卡插件(可多次使用)</h1>
+		
+		<div class="wrap">
+		
+		    <div class="tab">
+		        <ul class="tab-hd">
+		            <li class="active">选项1</li>
+		            <li>选项2</li>
+		            <li>选项3</li>
+		        </ul>
+		        <ul class="tab-bd">
+		            <li class="thisclass">42英寸液晶拼接屏应具有较高分辨率、可调亮度和对比度、范围宽，色彩还原真实</li>
+		            <li>产品功能：12ms急速响应</li>
+		            <li>内容3</li>
+		        </ul>
+		    </div>
+		
+		    <div class="tab">
+		        <ul class="tab-hd">
+		            <li class="active">选项4</li>
+		            <li>选项5</li>
+		            <li>选项6</li>
+		        </ul>
+		        <ul class="tab-bd">
+		            <li class="thisclass">内容4</li>
+		            <li>内容5</li>
+		            <li>内容6</li>
+		        </ul>
+		    </div>
+		
+		
+		</div>
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
+		<script>
+			$(function() {
+			    function tabs(tabTit, on, tabCon) {
+			        $(tabTit).children().hover(function() { // “hover”是鼠标经过事件，如果想要鼠标点击事件，不要鼠标经过效果， 改成“click”即可。$(tabTit).children().hover(function(){
+			            $(this).addClass(on).siblings().removeClass(on);
+			            var index = $(tabTit).children().index(this);
+			            $(tabCon).children().eq(index).show().siblings().hide();
+			        });
+			    };
+			    tabs(".tab-hd", "active", ".tab-bd");
+			});
+		</script>
+	</body>
+</html>
